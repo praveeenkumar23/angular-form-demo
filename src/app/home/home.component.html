@@ -1,0 +1,232 @@
+<div class="container">
+    <!-- <div class="bg-image"> -->
+    <!-- ng-app="show_hide-password" ng-controller="show_hide-password_controller" -->
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit (loginForm)">
+        <div class="form-row mt-3">
+            <div class=" col-md-8 offset-md-2">
+                <div class="jumbotron">
+                    <h3 class="Templete">Template Driven Form</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fname">First Name <span class="color">*</span> </label>
+                                <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname"
+                                    [(ngModel)]="model.fname" #fname="ngModel"
+                                    [ngClass]="{'is-invalid': loginForm.submitted && fname.invalid}" required
+                                    minlength="5" maxlength="15" pattern="[A-Za-z]*" autocomplete="off">
+                                <div class="invalid-feedback" *ngIf="loginForm.submitted && fname.invalid">
+                                    <div *ngIf="fname.errors.required">
+                                        First Name is required
+                                    </div>
+                                    <div *ngIf="fname.errors.pattern">
+                                        Numbers are not allowed
+                                    </div>
+                                    <div *ngIf="fname.errors.minlength">
+                                        First Name should have minimum 5 characters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md -6">
+                            <div class="form-group">
+                                <label for="lname">Last Name <span class="color">*</span> </label>
+                                <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname"
+                                    [(ngModel)]="model.lname" #lname="ngModel"
+                                    [ngClass]="{'is-invalid': loginForm.submitted && lname.invalid}" required
+                                    minlength="5" maxlength="15" pattern="[A-Za-z]*" autocomplete="off">
+                                <div class="invalid-feedback" *ngIf="loginForm.submitted && lname.invalid">
+                                    <div *ngIf="lname.errors.required">
+                                        Last Name is required
+                                    </div>
+                                    <div *ngIf="lname.errors.pattern">
+                                        Numbers and special characters are not allowed
+                                    </div>
+                                    <div *ngIf="lname.errors.minlength">
+                                        Last Name should have minimum 5 characters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number <span class="color">*</span></label>
+                        <input type="text" class="form-control" id="mobile" placeholder="Enter 10 digits Mobile Number"
+                            name="mobile" [(ngModel)]="model.mobile" #mobile="ngModel"
+                            [ngClass]="{'is-invalid': loginForm.submitted && mobile.invalid}" required maxlength="10"
+                            pattern="[0-9]{10}" autocomplete="off">
+                        <div class="invalid-feedback" *ngIf="loginForm.submitted && mobile.invalid">
+                            <div *ngIf="mobile.errors.required">
+                                MobileNumber is required
+                            </div>
+                            <div *ngIf="mobile.errors.pattern">
+                                MobileNumber should be in format
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender <span class="color">*</span></label>
+                        <label class="ml-4">Male</label>
+                        <input class="form-check-input ml-1 " type="radio" name="Gender" value="Male"
+                            [(ngModel)]="model.Gender" #Gender="ngModel" required
+                            [ngClass]="{'is-invalid': loginForm.submitted && Gender.invalid}">
+
+                        <label class="ml-4">Female</label>
+                        <input class="form-check-input ml-1" type="radio" name="Gender" value="Female"
+                            [(ngModel)]="model.Gender" #Gender="ngModel" required
+                            [ngClass]="{'is-invalid': loginForm.submitted && Gender.invalid}">
+                        <div class="invalid-feedback" *ngIf="loginForm.submitted && Gender.invalid">
+                            <div *ngIf="Gender.errors.required">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputAddress">Address 1 <span class="color">*</span> </label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="Address 1"
+                                    name="address1" [(ngModel)]="model.address1" #address1="ngModel"
+                                    [ngClass]="{'is-invalid': loginForm.submitted && address1.invalid}" maxlength="25"
+                                    autocomplete="off" required>
+                                <div class="invalid-feedback" *ngIf="loginForm.submitted && address1.invalid">
+                                    <div *ngIf="address1.errors.required">
+                                        Address 1 is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputAddress2">Address 2 <span class="color">*</span> </label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Address 2"
+                                    name="address2" [(ngModel)]="model.address2" #address2="ngModel"
+                                    [ngClass]="{'is-invalid': loginForm.submitted && address2.invalid}" maxlength="25"
+                                    autocomplete="off" required>
+                                <div class="invalid-feedback" *ngIf="loginForm.submitted && address2.invalid">
+                                    <div *ngIf="address2.errors.required">
+                                        Address 2 is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="countryId">Country <span class="color">*</span> </label>
+                            <select id="countryId" class="countries order-alpha form-control"
+                                name="country" [(ngModel)]="model.country" #country="ngModel"
+                                [ngClass]="{'is-invalid': loginForm.submitted && country.invalid}" required>
+                                <option value="" [ngValue]="">Select Country</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="loginForm.submitted && country.invalid">
+                                <div *ngIf="country.errors.required">
+                                    Country is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="stateId">State <span class="color">*</span> </label>
+                            <select id="stateId" class="states order-alpha form-control" name="state"
+                                [(ngModel)]="model.state" #state="ngModel"
+                                [ngClass]="{'is-invalid': loginForm.submitted && state.invalid}" required>
+                                <option value="">Select State</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="loginForm.submitted && state.invalid">
+                                <div *ngIf="state.errors.required">
+                                    State is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="cityId">City <span class="color">*</span> </label>
+                            <select id="cityId" class="cities order-alpha form-control" name="city"
+                                [(ngModel)]="model.city" #city="ngModel"
+                                [ngClass]="{'is-invalid': loginForm.submitted && city.invalid}" required>
+                                <option value="">Select City</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="loginForm.submitted && city.invalid">
+                                <div *ngIf="city.errors.required">
+                                    City is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="inputEmail4">Email <span class="color">*</span></label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email"
+                            [(ngModel)]="model.email" #email="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" required
+                            pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" autocomplete="off">
+                        <div class="invalid-feedback" *ngIf="loginForm.submitted && email.invalid">
+                            <div *ngIf="email.errors.required">
+                                Email is required.
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                Email is not valid.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword4">Password <span class="color">*</span></label>
+                        <div class="input-group mb-3">
+                            <input [type]="passwordVisible ? 'password' : 'text'" class="form-control"
+                                id="inputPassword4" placeholder="Password" name="password" [(ngModel)]="model.password"
+                                #password="ngModel" [ngClass]="{'is-invalid': loginForm.submitted && password.invalid}"
+                                 autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                                maxlength="15">
+                            <div class="input-group-append">
+                                <span class="input-group-text" (click)="fnShowPassword()" style="cursor: pointer;"> <i
+                                        class="fa"
+                                        [ngClass]="{'fa-eye':!passwordVisible,'fa-eye-slash':passwordVisible}"
+                                        ></i> 
+                                </span>
+                            </div>
+                            <div class="invalid-feedback" *ngIf="loginForm.submitted && password.invalid">
+                                <div *ngIf="password.errors.required">
+                                    Password is required
+                                </div>
+                                <div *ngIf="password.errors.pattern">
+                                    Must contain at least one number and one uppercase and
+                                    lowercase letter, and at least 8 or more characters.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputconPassword4">Confirm Password <span class="color">*</span></label>
+                        <input type="password" class="form-control" id="inputconPassword4"
+                            placeholder="Confirm Password" name="confirmpassword" [(ngModel)]="model.confirmpassword"
+                            #confirmpassword="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && confirmpassword.invalid}" required
+                            autocomplete="off" pattern="{{ password.value }}">
+                        <div class="invalid-feedback" *ngIf="loginForm.submitted && confirmpassword.invalid">
+                            <div *ngIf="confirmpassword.errors.required">
+                                confirm password is required
+                            </div>
+                            <div *ngIf="confirmpassword.errors.pattern">
+                                Password & Confirm Password does not match.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-0 p-0">
+                        <div class="align-self-end ml-auto">
+                            <button type="submit" id="button1" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- </div> -->
+</div>

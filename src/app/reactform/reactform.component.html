@@ -1,0 +1,314 @@
+<!-- [formgroup]="userform" (ngSubmit)="onSubmit(userform.value)" -->
+<form [formGroup]="heroForm" #formDir="ngForm" (ngSubmit)="signup(heroForm)">
+  <div class="example-container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field>
+          <input matInput type="text" placeholder="First Name " formControlName="fname" pattern="[A-Za-z]*" required
+            autocomplete="off">
+          <mat-error *ngIf="fname.invalid && (fname.dirty || fname.touched || formDir.submitted)">
+            <mat-error *ngIf="fname.errors.required">
+              First Name is required.
+            </mat-error>
+            <mat-error *ngIf="fname.errors.pattern">
+              Numbers are not allowed
+            </mat-error>
+            <mat-error *ngIf="fname.errors.minlength">
+              First Name must be at least 4 characters long.
+            </mat-error>
+
+          </mat-error>
+        </mat-form-field>
+        <!-- <mat-error> -->
+        <!-- <span *ngIf="!userform.get('FirstName').valid && userform.get('FirstName').touched">Please enter First Name
+            !!!</span> -->
+        <!-- </mat-error> -->
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Last Name" formControlName="lname" pattern="[A-Za-z]*" required
+            autocomplete="off">
+          <mat-error *ngIf="lname.invalid && (lname.dirty || lname.touched || formDir.submitted)">
+            <mat-error *ngIf="lname.errors.required">
+              Last Name is required.
+            </mat-error>
+            <mat-error *ngIf="lname.errors.pattern">
+              Numbers are not allowed
+            </mat-error>
+            <mat-error *ngIf="lname.errors.minlength">
+              Last Name must be at least 4 characters long.
+            </mat-error>
+            <!-- <mat-error *ngIf="lname.errors.forbiddenName">
+                  Last Name cannot be Bob.
+              </mat-error> -->
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <mat-form-field>
+      <input matInput placeholder="Mobile Number" formControlName="mobile" pattern="[0-9]{10}" maxlength="10" required
+        autocomplete="off">
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-error *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || formDir.submitted)">
+        <mat-error *ngIf="mobile.errors.required">
+          Mobile Number is required.
+        </mat-error>
+        <mat-error *ngIf="mobile.errors.pattern">
+          Mobile Number should be in format
+        </mat-error>
+        <!-- <mat-error *ngIf="mobile.errors.forbiddenName">
+                  Mobile Number cannot be Bob.
+              </mat-error> -->
+      </mat-error>
+    </mat-form-field>
+
+    <label>Gender *</label>
+    <mat-radio-group aria-label="Select an option" formControlName="Gender" required>
+      <mat-radio-button value="1" class="ml-2">Male</mat-radio-button>
+      <mat-radio-button value="2" class="ml-2">Female</mat-radio-button>
+      <mat-error *ngIf="Gender.invalid && (Gender.dirty || Gender.touched || formDir.submitted)">
+        <mat-error *ngIf="Gender.errors.required">
+          Gender is required
+        </mat-error>
+      </mat-error>
+    </mat-radio-group>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field>
+          <input matInput placeholder="Address 1 " formControlName="address1" maxlength="25" required
+            autocomplete="off">
+          <mat-error *ngIf="address1.invalid && (address1.dirty || address1.touched || formDir.submitted)">
+            <mat-error *ngIf="address1.errors.required">
+              Address 1 is required.
+            </mat-error>
+            <mat-error *ngIf="address1.errors.minlength">
+              Address 1 must be at least 5 characters long.
+            </mat-error>
+            <!-- <mat-error *ngIf="address1.errors.forbiddenName">
+                  Address 1 cannot be Bob.
+              </mat-error> -->
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <input matInput placeholder="Address 1 " formControlName="address2" maxlength="25" required
+            autocomplete="off">
+          <mat-error *ngIf="address2.invalid && (address2.dirty || address2.touched || formDir.submitted)">
+            <mat-error *ngIf="address2.errors.required">
+              Address 2 is required.
+            </mat-error>
+            <mat-error *ngIf="address2.errors.minlength">
+              Address 2 must be at least 5 characters long.
+            </mat-error>
+            <!-- <mat-error *ngIf="address2.errors.forbiddenName">
+                      Address 2 cannot be Bob.
+                  </mat-error> -->
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field>
+          <select id="countryId" class="countries order-alpha form-control" name="country" formControlName="country"
+            required>
+            <option>Select Country</option>
+            <mat-select matInput></mat-select>
+          </select>
+          <div *ngIf="country.invalid && (country.dirty || country.touched || formDir.submitted)">
+            <mat-error *ngIf="country.errors.required">
+              country is required.
+            </mat-error>
+          </div>
+
+          <!-- </select> -->
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field>
+          <select id="stateId" class="states order-alpha form-control" name="state" formControlName="state" required>
+            <option>Select Country</option>
+            <mat-select matInput></mat-select>
+          </select>
+          <div *ngIf="state.invalid && (state.dirty || state.touched || formDir.submitted)">
+            <mat-error *ngIf="state.errors.required">
+              state is required.
+            </mat-error>
+          </div>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field>
+          <select id="cityId" class="cities order-alpha form-control" name="city" formControlName="city" required>
+            <option>Select Country</option>
+            <mat-select matInput></mat-select>
+          </select>
+          <div *ngIf="city.invalid && (city.dirty || city.touched || formDir.submitted)">
+            <mat-error *ngIf="city.errors.required">
+              city is required.
+            </mat-error>
+          </div>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-4">
+        <mat-form-field>
+            <mat-select matInput [(value)]="selected" class="states order-alpha form-control" name="state"
+            formControlName="state" required>
+            <mat-option [value]="">Select State</mat-option>
+          </mat-select>
+          <mat-error *ngIf="state.invalid && (state.dirty || state.touched || formDir.submitted)">
+            <mat-error *ngIf="state.errors.required">
+              State is required.
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+ 
+      <div class="col-md-4">
+        <mat-form-field>
+          <mat-select matInput [(value)]="selected"  class="cities order-alpha form-control" name="city"
+            formControlName="city" required>
+            <mat-option [value]="">Select City</mat-option>
+          </mat-select>
+          <mat-error *ngIf="city.invalid && (city.dirty || coucityntry.touched || formDir.submitted)">
+            <mat-error *ngIf="city.errors.required">
+              City is required.
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div> -->
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-md-4">
+        <mat-form-field>
+          <mat-select [(value)]="selected" placeholder="Country" formControlName="country" required>
+            <mat-option>None</mat-option>
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option2">Option 2</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="country.invalid && (country.dirty || country.touched || formDir.submitted)">
+            <mat-error *ngIf="country.errors.required">
+              Country is required.
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field>
+          <mat-select [(value)]="selected" placeholder="State" formControlName="state" required>
+            <mat-option>None</mat-option>
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option2">Option 2</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="state.invalid && (state.dirty || state.touched || formDir.submitted)">
+              <mat-error *ngIf="state.errors.required">
+                State is required.
+              </mat-error>
+            </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field>
+          <mat-select [(value)]="selected" placeholder="City" formControlName="city" required>
+            <mat-option>None</mat-option>
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option2">Option 2</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="city.invalid && (city.dirty || city.touched || formDir.submitted)">
+              <mat-error *ngIf="city.errors.required">
+                City is required.
+              </mat-error>
+            </mat-error>
+        </mat-form-field>
+      </div>
+    </div> -->
+
+
+    <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [formControl]="emailFormControl"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field> -->
+
+    <!-- <mat-form-field>
+      <input matInput placeholder="Enter your email" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field> -->
+
+    <mat-form-field>
+      <input matInput type="email" placeholder="Email " formControlName="email"
+        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required autocomplete="off">
+      <mat-error *ngIf="email.invalid && (email.dirty || email.touched || formDir.submitted)">
+        <mat-error *ngIf="email.errors.required">
+          Email is required.
+        </mat-error>
+        <mat-error *ngIf="email.errors.pattern">
+          Email is not valid
+        </mat-error>
+        <!-- <mat-error *ngIf="email.errors.forbiddenName">
+                    Email cannot be Bob.
+                </mat-error> -->
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+        formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required autocomplete="off">
+      <mat-error *ngIf="password.invalid && (password.dirty || password.touched || formDir.submitted)">
+        <mat-error *ngIf="password.errors.required">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="password.errors.pattern">
+          Must contain at least one number and one uppercase and
+          lowercase letter, and at least 8 or more characters.
+        </mat-error>
+        <!-- <mat-error *ngIf="password.errors.forbiddenName">
+          Password cannot be Bob.
+        </mat-error> -->
+      </mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" placeholder="Confirm Password" formControlName="conpassword" required
+        pattern="{{ password.value }}">
+      <mat-error *ngIf="conpassword.invalid && (conpassword.dirty || conpassword.touched || formDir.submitted)">
+        <mat-error *ngIf="conpassword.errors.required">
+          confirm password is required
+        </mat-error>
+        <mat-error *ngIf="conpassword.errors.pattern">
+          Password & Confirm Password does not match.
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="align-self-end ml-auto ml-0 p-0">
+      <button mat-raised-button type="submit" color="primary">Sign Up</button>
+    </div>
+
+  </div>
+
+</form>
